@@ -1,0 +1,33 @@
+version: '3'
+services:
+  eureka-service:
+    build: eureka-service/
+    hostname: eureka-service
+    ports:
+      - "8761:8761"
+    networks:
+      - default-network
+
+  common-api:
+    build: common-api/
+    hostname: common-api
+    ports:
+      - "8081:8081"
+    networks:
+      - default-network
+
+  gateway-service:
+    build: gateway-service/
+    hostname: gateway-service
+    ports:
+      - "9999:9999"
+    depends_on:
+      - eureka-service
+    environment:
+      - eureka.client.service-url.defaultZone=http://eureka-service:8761/eureka
+    networks:
+      - default-network
+
+networks:
+  default-network:
+    driver: bridge
