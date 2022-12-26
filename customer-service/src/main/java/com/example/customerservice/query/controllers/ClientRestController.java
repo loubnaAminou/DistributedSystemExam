@@ -18,7 +18,7 @@ public class ClientRestController {
     private QueryGateway queryGateway;
 
     @GetMapping("/allCustomers")
-    public List<Client> getAllRadars(){
+    public List<Client> getAllClients(){
         return queryGateway.query(new GetAllClients(), ResponseTypes.multipleInstancesOf(Client.class)).join();
     }
 }

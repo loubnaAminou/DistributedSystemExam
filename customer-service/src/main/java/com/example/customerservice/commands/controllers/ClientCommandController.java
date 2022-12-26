@@ -19,7 +19,7 @@ public class ClientCommandController {
     private CommandGateway commandGateway;
 
     @PostMapping(path = "/create")
-    public CompletableFuture<String> createRadar(@RequestBody CreateClientRequestDTO clientRequestDTO) {
+    public CompletableFuture<String> createClient(@RequestBody CreateClientRequestDTO clientRequestDTO) {
         CompletableFuture<String> response = commandGateway.send(new CreateClientCommand(
                 UUID.randomUUID().toString(),
                 clientRequestDTO.getNom(),
